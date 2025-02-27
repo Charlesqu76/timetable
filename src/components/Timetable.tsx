@@ -9,7 +9,7 @@ export default function Timetable() {
   const hasConflict = useStore((state) => state.hasConflict);
 
   const timeSlots: string[] = [];
-  for (let i = 8; i < 18; i++) {
+  for (let i = 8; i < 24; i++) {
     timeSlots.push(`${i.toString().padStart(2, "0")}:00`);
     timeSlots.push(`${i.toString().padStart(2, "0")}:30`);
   }
@@ -98,7 +98,6 @@ export default function Timetable() {
                         <div className="text-xs">
                           {section.startTime} - {endTime}
                         </div>
-                        <div className="text-xs">Room: {section.room}</div>
                         {sectionHasConflict && (
                           <div className="absolute top-0 right-0 w-full h-full border-2 border-red-500 rounded pointer-events-none"></div>
                         )}

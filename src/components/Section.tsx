@@ -8,7 +8,6 @@ export default function Sections() {
   const toggleSectionSelection = useStore(
     (state) => state.toggleSectionSelection
   );
-
   const hasConflict = useStore((state) => state.hasConflict);
 
   return (
@@ -59,10 +58,7 @@ export default function Sections() {
                     <div className="text-sm">
                       {section.startTime} - {endTime}
                     </div>
-                    <div className="text-sm">Room: {section.room}</div>
-                    <div className="text-sm text-gray-600">
-                      {section.instructor}
-                    </div>
+
                     {hasTimeConflict && (
                       <div className="mt-1 text-xs font-medium text-red-600">
                         Time Conflict!

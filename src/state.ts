@@ -4,8 +4,6 @@ interface ClassSection {
   day: string;
   startTime: string;
   duration: number; // Duration in minutes instead of endTime
-  room: string;
-  instructor: string;
   classId?: number; // Added when selected
 }
 
@@ -25,24 +23,18 @@ export const classesData: ClassData[] = [
         day: "Monday",
         startTime: "09:00",
         duration: 90, // 90 minutes instead of endTime: "10:30"
-        room: "Tech-201",
-        instructor: "Dr. Smith",
       },
       {
         id: "CS101-B",
         day: "Wednesday",
         startTime: "13:00",
         duration: 90, // 90 minutes instead of endTime: "14:30"
-        room: "Tech-201",
-        instructor: "Dr. Smith",
       },
       {
         id: "CS101-C",
         day: "Thursday",
         startTime: "15:00",
         duration: 90, // 90 minutes instead of endTime: "16:30"
-        room: "Tech-205",
-        instructor: "Dr. Johnson",
       },
     ],
   },
@@ -55,24 +47,18 @@ export const classesData: ClassData[] = [
         day: "Monday",
         startTime: "11:00",
         duration: 90, // 90 minutes instead of endTime: "12:30"
-        room: "Math-101",
-        instructor: "Dr. Williams",
       },
       {
         id: "MATH101-B",
         day: "Tuesday",
         startTime: "09:00",
         duration: 90, // 90 minutes instead of endTime: "10:30"
-        room: "Math-101",
-        instructor: "Dr. Williams",
       },
       {
         id: "MATH101-C",
         day: "Friday",
         startTime: "14:00",
         duration: 90, // 90 minutes instead of endTime: "15:30"
-        room: "Math-103",
-        instructor: "Dr. Brown",
       },
     ],
   },
@@ -85,16 +71,12 @@ export const classesData: ClassData[] = [
         day: "Tuesday",
         startTime: "13:00",
         duration: 90, // 90 minutes instead of endTime: "14:30"
-        room: "Psych-201",
-        instructor: "Dr. Garcia",
       },
       {
         id: "PSYCH101-B",
         day: "Thursday",
         startTime: "09:00",
         duration: 90, // 90 minutes instead of endTime: "10:30"
-        room: "Psych-201",
-        instructor: "Dr. Garcia",
       },
     ],
   },
@@ -107,16 +89,12 @@ export const classesData: ClassData[] = [
         day: "Wednesday",
         startTime: "09:00",
         duration: 90, // 90 minutes instead of endTime: "10:30"
-        room: "History-101",
-        instructor: "Dr. Wilson",
       },
       {
         id: "HIST101-B",
         day: "Friday",
         startTime: "11:00",
         duration: 90, // 90 minutes instead of endTime: "12:30"
-        room: "History-101",
-        instructor: "Dr. Wilson",
       },
     ],
   },
@@ -129,16 +107,12 @@ export const classesData: ClassData[] = [
         day: "Monday",
         startTime: "09:00",
         duration: 90, // 90 minutes instead of endTime: "10:30"
-        room: "Arts-201",
-        instructor: "Prof. Taylor",
       },
       {
         id: "ENG101-B",
         day: "Wednesday",
         startTime: "11:00",
         duration: 90, // 90 minutes instead of endTime: "12:30"
-        room: "Arts-201",
-        instructor: "Prof. Taylor",
       },
     ],
   },

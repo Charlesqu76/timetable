@@ -33,8 +33,6 @@ export default function SelectedSections() {
             <p className="text-sm">
               {section.day}: {section.startTime}-{endTime}
             </p>
-            <p className="text-sm">Room: {section.room}</p>
-            <p className="text-sm">Instructor: {section.instructor}</p>
             {sectionHasConflict && (
               <p className="mt-1 text-sm font-medium text-red-600">
                 ⚠️ Time conflict with another class

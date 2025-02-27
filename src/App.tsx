@@ -3,13 +3,42 @@ import { timeOverlap } from "./util/timeOverlap";
 import { useStore } from "./state";
 import Sections from "./components/Section";
 import Timetable from "./components/Timetable";
+import { loadDataList } from "./util/loadData";
+import { getLectureInfo } from "./util/getLectureInfo";
 function App() {
   const selectedSections = useStore((state) => state.selectedSections);
   const setConflicts = useStore((state) => state.setConflicts);
+
+  const init = async () => {
+    const data = await loadDataList();
+    const d = data.map((item) => getLectureInfo(item));
+    const dCombined = d.reduce((acc, cur) => [...acc, ...cur], []);
+    const combined = dCombined.reduce((acc, cur) => {
+      const { subjectCode, activityGroupCode } = cur;
+      cur["endTime"] = cur["startTime"] + cur["duration"];
+      if (acc[subjectCode]) {
+        if (acc[subjectCode][activityGroupCode]) {
+          acc[subjectCode][activityGroupCode].push(cur);
+        } else {
+          acc[subjectCode][activityGroupCode] = [cur];
+        }
+      } else {
+        acc[subjectCode] = {
+          [activityGroupCode]: [cur],
+        };
+      }
+      return acc;
+    }, {});
+    console.log(combined);
+  };
+
+  useEffect(() => {
+    init();
+  }, []);
+
   useEffect(() => {
     const newConflicts: any[] = [];
 
-    // Check each pair of sections for conflicts
     for (let i = 0; i < selectedSections.length; i++) {
       for (let j = i + 1; j < selectedSections.length; j++) {
         const section1 = selectedSections[i];
