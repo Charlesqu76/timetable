@@ -9,7 +9,7 @@ function App() {
   });
   return (
     <div className="mx-auto p-4">
-      <div className="flex flex-col md:flex-row gap-6">
+      <div className="flex flex-col md:flex-row gap-6 min-h-screen">
         <Sections />
         <Timetable />
       </div>

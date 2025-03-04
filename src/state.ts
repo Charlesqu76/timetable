@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { loadDataList } from "./util/loadData";
 import { getLectureInfo } from "./util/getLectureInfo";
+import getConflicts from "./util/conflict";
 
 export interface ICourseDeatils {
   code: string;
@@ -15,8 +16,7 @@ export interface ICourseDeatils {
 }
 
 export interface ICourse {
-  Lecture?: ICourseDeatils[];
-  Tutorial?: ICourseDeatils[];
+  [type: string]: ICourseDeatils[];
 }
 
 interface storeState {
@@ -34,12 +34,14 @@ export const useStore = create<storeState>((set, get) => ({
   selectedSections: [],
   conflicts: [],
   clearSelections: () => set({ selectedSections: [] }),
+
   toggleSectionSelection: (section: ICourseDeatils) => {
     const selectedSections = get().selectedSections;
     const sectionIndex = selectedSections.findIndex(
       (s) => s.code === section.code
     );
 
+    // cancel selecting
     if (sectionIndex >= 0) {
       set({
         selectedSections: selectedSections.filter(
@@ -56,21 +58,23 @@ export const useStore = create<storeState>((set, get) => ({
         s.activityGroupCode === section.activityGroupCode
     )[0];
 
-    set({
-      selectedSections: [
-        ...selectedSections.filter(
-          (s) => s.code !== selectedInSameSection?.code
-        ),
-        { ...section },
-      ],
-    });
+    const res = selectedSections.filter(
+      (s) => s.code !== selectedInSameSection?.code
+    );
 
-    // check conflict with other sections
+    // const conflicts = getConflicts(section, res);
+
+
+    set({
+      selectedSections: [...res, section],
+    });
   },
+
   hasConflict: (code: string): boolean => {
     const conflicts = get().conflicts;
     return conflicts.some((conflict) => conflict.code === code);
   },
+
   getCourses: async () => {
     const data = await loadDataList();
     const d = data.map((item) => getLectureInfo(item));

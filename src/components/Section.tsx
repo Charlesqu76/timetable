@@ -18,7 +18,7 @@ export default function Sections() {
   const hasConflict = useStore((state) => state.hasConflict);
 
   return (
-    <div className="w-full md:w-1/3 p-4 bg-gray-50 rounded shadow-sm ">
+    <div className="w-full md:w-1/3 p-4 bg-gray-50 rounded shadow-sm h-screen overflow-y-auto">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold">Available Classes</h2>
         <Button onClick={clearSelections}>Clear All</Button>
@@ -26,8 +26,8 @@ export default function Sections() {
 
       <div className="space-y-6">
         {Object.entries(courses).map(([courseId, courseSections]) => (
-          <div key={courseId} className="border-b pb-4">
-            <Accordion type="multiple">
+          <div key={courseId} className="border-b">
+            <Accordion type="multiple" className="">
               <AccordionItem value="courseId">
                 <AccordionTrigger className="text-xl font-bold">
                   {courseId}
