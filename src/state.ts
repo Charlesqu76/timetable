@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { loadDataList } from "./util/loadData";
 import { getLectureInfo } from "./util/getLectureInfo";
-import getConflicts from "./util/conflict";
 
 export interface ICourseDeatils {
   code: string;
@@ -61,9 +60,6 @@ export const useStore = create<storeState>((set, get) => ({
     const res = selectedSections.filter(
       (s) => s.code !== selectedInSameSection?.code
     );
-
-    // const conflicts = getConflicts(section, res);
-
 
     set({
       selectedSections: [...res, section],
