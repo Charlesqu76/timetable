@@ -1,4 +1,3 @@
-// Helper function to calculate end time from start time and duration
 export const calculateEndTime = (
   startTime: string,
   durationMinutes: number | string

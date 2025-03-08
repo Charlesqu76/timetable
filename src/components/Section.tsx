@@ -7,6 +7,7 @@ import {
   AccordionTrigger,
 } from "./ui/accordion";
 import { cn } from "@/lib/utils";
+import { CLASS_COLORS } from "@/const/color";
 
 export default function Sections() {
   const selectedSections = useStore((state) => state.selectedSections);
@@ -16,7 +17,6 @@ export default function Sections() {
     (state) => state.toggleSectionSelection
   );
   const hasConflict = useStore((state) => state.hasConflict);
-
   return (
     <div className="w-full md:w-1/3 p-4 bg-gray-50 rounded shadow-sm h-screen overflow-y-auto">
       <div className="flex justify-between items-center mb-4">
@@ -48,13 +48,13 @@ export default function Sections() {
                             const hasTimeConflict =
                               isSelected && hasConflict(code);
                             const endTime = section.endTime;
-
+                            const color = CLASS_COLORS[section.index];
                             return (
                               <div
                                 key={code}
                                 className={cn(
                                   "p-2 rounded bg-white  border cursor-pointer transition-colors",
-                                  isSelected && "bg-blue-100 border-blue-300"
+                                  isSelected && color
                                 )}
                                 onClick={() => toggleSectionSelection(section)}
                               >

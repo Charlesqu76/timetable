@@ -9,6 +9,7 @@ type LectureInfo = {
   startTime: string;
   duration: string;
   day: string;
+  index?: number;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

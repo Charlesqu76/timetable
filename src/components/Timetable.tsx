@@ -4,6 +4,8 @@ import { calculateEndTime } from "../util/calculateEndTime";
 import { useStore } from "../state";
 import timeSlots, { getPositionStyle, TIMESLOT_HEIGHT } from "@/const/timeslot";
 import { groupSections } from "@/util/groupSection";
+import { CLASS_COLORS } from "@/const/color";
+import { cn } from "@/lib/utils";
 
 export default function Timetable() {
   const selectedSections = useStore((state) => state.selectedSections);
@@ -64,8 +66,11 @@ export default function Timetable() {
                     .map((section, index) => {
                       const left =
                         (dayIndex + 1) * normalSctionWidth +
-                        index * (sectionWidth + 0.25);
-                      const width = sectionWidth - (len - 1) * 0.5;
+                        index * sectionWidth +
+                        0.5;
+                      const color = CLASS_COLORS[section.index];
+
+                      const width = sectionWidth - 1;
                       const style = getPositionStyle(
                         section.startTime,
                         section.duration
@@ -79,7 +84,10 @@ export default function Timetable() {
                       return (
                         <div
                           key={section.code}
-                          className={`absolute rounded p-2 bg-blue-100 border-blue-300 shadow-sm overflow-hidden`}
+                          className={cn(
+                            `absolute rounded p-2 shadow-sm overflow-hidden`,
+                            color
+                          )}
                           style={{
                             ...style,
                             left: `${left}%`,

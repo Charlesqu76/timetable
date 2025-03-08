@@ -1,7 +1,20 @@
-export const classColors: string[] = [
+export const CLASS_COLORS: string[] = [
   "bg-blue-100 border-blue-300",
   "bg-green-100 border-green-300",
   "bg-purple-100 border-purple-300",
-  "bg-yellow-100 border-yellow-0",
+  "bg-yellow-100 border-yellow-300",
   "bg-red-100 border-red-300",
+  "bg-pink-100 border-pink-300",
+  "bg-indigo-100 border-indigo-300",
+  "bg-teal-100 border-teal-300",
+  "bg-orange-100 border-orange-300",
+  "bg-cyan-100 border-cyan-300",
+  "bg-lime-100 border-lime-300",
+  "bg-amber-100 border-amber-300",
+  "bg-emerald-100 border-emerald-300",
+  "bg-fuchsia-100 border-fuchsia-300",
+  "bg-sky-100 border-sky-300",
+  "bg-rose-100 border-rose-300",
+  "bg-violet-100 border-violet-300",
+  "bg-slate-100 border-slate-300",
 ];

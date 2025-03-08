@@ -3,6 +3,7 @@ import { loadDataList } from "./util/loadData";
 import { getLectureInfo } from "./util/getLectureInfo";
 
 export interface ICourseDeatils {
+  index?: number;
   code: string;
   type: string;
   subjectCode: string;
@@ -75,22 +76,29 @@ export const useStore = create<storeState>((set, get) => ({
     const data = await loadDataList();
     const d = data.map((item) => getLectureInfo(item));
     const dCombined = d.reduce((acc, cur) => [...acc, ...cur], []);
+    let index = 0;
     const combined = dCombined.reduce((acc, cur) => {
       const { courseName, activityGroupCode } = cur;
 
       if (acc[courseName]) {
         if (acc[courseName][activityGroupCode]) {
           acc[courseName][activityGroupCode].push(cur);
+          cur.index = acc[courseName][activityGroupCode][0].index;
         } else {
+          cur.index = index;
+          index += 1;
           acc[courseName][activityGroupCode] = [cur];
         }
       } else {
+        cur.index = index;
+        index += 1;
         acc[courseName] = {
           [activityGroupCode]: [cur],
         };
       }
       return acc;
     }, {});
+
     set({
       courses: combined,
     });
